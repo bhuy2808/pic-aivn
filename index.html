@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sticker Bento - Tạo Sticker Cực Chill</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+    
+    <!-- Magical Sparkles -->
+    <div class="sparkle s1"></div>
+    <div class="sparkle s2"></div>
+    <div class="sparkle s3"></div>
+    <div class="sparkle s4"></div>
+    <div class="sparkle s5"></div>
+    <div class="sparkle s6"></div>
+
+    <div class="bento-container">
+        
+        <!-- Header Bento with Nav Tabs -->
+        <div class="bento-box bento-header">
+            <div class="tab-nav">
+                <button class="tab-btn active" id="tabSticker">✨ Tạo Sticker Magic</button>
+                <button class="tab-btn" id="tabIdol">📸 Cùng Idol</button>
+            </div>
+        </div>
+
+        <!-- Login Bento -->
+        <div class="bento-box bento-login">
+            <div id="loginStateGuest" style="display: block;">
+                <h3>Khóa Phép Thuật</h3>
+                <p>Đăng nhập để nhận lượt xài AI miễn phí</p>
+                <div class="login-btn-wrapper">
+                    <button class="btn-magic" id="loginBtn">
+                        <svg class="google-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.51 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.46c-.28 1.45-1.07 2.68-2.25 3.47v2.88h3.64c2.13-1.96 3.36-4.85 3.36-8.59z" fill="#4285F4"></path><path d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.64-2.88c-1.07.72-2.45 1.14-4.3 1.14-3.3 0-6.09-2.23-7.09-5.22H1.18v2.96C3.17 20.9 7.27 24 12 24z" fill="#34A853"></path><path d="M4.91 14.13A7.54 7.54 0 0 1 4.54 12c0-.75.13-1.48.37-2.13V6.91H1.18A11.96 11.96 0 0 0 0 12c0 1.93.46 3.77 1.18 5.4l3.73-3.27z" fill="#FBBC05"></path><path d="M12 4.65c1.76 0 3.35.61 4.6 1.8l3.44-3.44C17.96 1.07 15.24 0 12 0 7.27 0 3.17 3.1 1.18 6.91l3.73 3.27C5.91 6.88 8.7 4.65 12 4.65z" fill="#EA4335"></path></svg>
+                        Google Login
+                    </button>
+                </div>
+            </div>
+            <div id="loginStateUser" style="display: none; flex-direction: column; align-items: center;">
+                <img src="https://ui-avatars.com/api/?name=User&background=random" alt="User Avatar" class="user-avatar" style="width: 60px; height: 60px; margin-bottom: 10px;">
+                <h3 style="margin-bottom: 5px;">Chào Phù Thủy!</h3>
+                <p style="margin-top: 0;">Lượt tạo AI: <strong id="creditAmount" style="font-size: 1.5rem; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 10px;">0</strong></p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-magic" id="logoutBtn" style="font-size: 0.9rem; padding: 8px 15px; color: var(--text-main); border-color: transparent;">Đăng Xuất</button>
+                </div>
+                <!-- Audio for payment success -->
+                <audio id="successSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
+            </div>
+        </div>
+
+        <!-- View: Tạo Sticker Magic (Mặc định) -->
+        <div id="viewSticker" style="display: contents;">
+            <!-- Upload Bento -->
+            <div class="bento-box bento-upload">
+                <h3>Chọn Ảnh Gốc Mẫu 🖼️</h3>
+                <label class="upload-zone">
+                    <input type="file" id="upload" accept="image/*" />
+                    <div class="upload-icon" id="upIcon">📸</div>
+                    <div class="upload-text" id="upText">Kéo thả hoặc Nhấn để tải ảnh</div>
+                    <div class="upload-sub" id="upSub">Hỗ trợ JPG, PNG (Max 5MB)</div>
+                    <img id="previewImg" alt="Preview"/>
+                </label>
+            </div>
+
+            <!-- Style Selection Bento -->
+            <div class="bento-box bento-style">
+                <h3>Chọn Phép Thuật Biến Hình ✨</h3>
+                <div class="style-grid">
+                    <div class="style-card active" data-style="anime">
+                        <div class="style-icon">🌸</div>
+                        <div class="style-name">Anime Mịn Màng</div>
+                        <div class="style-desc">Mắt to tròn, màu sắc tươi tắn</div>
+                    </div>
+                    <div class="style-card" data-style="chibi">
+                        <div class="style-icon">🍡</div>
+                        <div class="style-name">Chibi Đầu To</div>
+                        <div class="style-desc">Cute hột me, lùn tịt đáng yêu</div>
+                    </div>
+                    <div class="style-card" data-style="cyberpunk">
+                        <div class="style-icon">⚡</div>
+                        <div class="style-name">Cyber Neon</div>
+                        <div class="style-desc">Tương lai chói lóa, màu gắt</div>
+                    </div>
+                    <div class="style-card" data-style="kawaii">
+                        <div class="style-icon">🍬</div>
+                        <div class="style-name">Kawaii Pastel</div>
+                        <div class="style-desc">Ngọt lịm như kẹo bông gòn</div>
+                    </div>
+                    <div class="style-card" data-style="monster">
+                        <div class="style-icon">👾</div>
+                        <div class="style-name">Cute Monster</div>
+                        <div class="style-desc">Quái vật tí hon, tinh nghịch</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Row -->
+            <div class="action-row">
+                <button class="btn-generate" id="processBtn">
+                    <span class="spinner" id="spinner"></span>
+                    <span id="btnText">Bắt đầu hóa phép 🪄</span>
+                </button>
+            </div>
+            
+            <!-- Results Bento -->
+            <div class="bento-box bento-result" id="resultBento">
+                <h3>Tadaaa! Của bạn đây 💖</h3>
+                <div class="result-wrapper" id="resultGrid">
+                    <!-- Items will be injected here via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Sống cùng Người Nổi Tiếng -->
+        <div id="viewIdol" style="display: none;">
+            <!-- Upload Self Bento -->
+            <div class="bento-box bento-upload">
+                <h3>Khuôn mặt của bạn 🙎‍♂️</h3>
+                <label class="upload-zone">
+                    <input type="file" id="uploadIdol" accept="image/*" />
+                    <div class="upload-icon" id="upIconIdol">📸</div>
+                    <div class="upload-text" id="upTextIdol">Tải lên ảnh Selfie rõ mặt</div>
+                    <div class="upload-sub" id="upSubIdol">Góc chụp thẳng là tốt nhất</div>
+                    <img id="previewImgIdol" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 18px; position: absolute; z-index: 5;" />
+                </label>
+            </div>
+
+            <!-- Choose Idol -->
+            <div class="bento-box bento-style">
+                <h3>Chọn Idol Ghép Cặp 🤩</h3>
+                <div class="style-grid" id="idolGrid">
+                    <div class="style-card active" data-idol="lisa" data-tier="free">
+                        <span class="tier-badge tier-free">Free</span>
+                        <div class="style-icon">💃</div>
+                        <div class="style-name">Lisa (BP)</div>
+                        <div class="style-desc">Thiên thần tỷ lệ vàng</div>
+                    </div>
+                    <div class="style-card" data-idol="taylor" data-tier="vip">
+                        <span class="tier-badge tier-vip">VIP</span>
+                        <div class="style-icon">🎸</div>
+                        <div class="style-name">Taylor Swift</div>
+                        <div class="style-desc">Dạo phố ở New York</div>
+                    </div>
+                    <div class="style-card" data-idol="ronaldo" data-tier="vip">
+                        <span class="tier-badge tier-vip">VIP</span>
+                        <div class="style-icon">⚽</div>
+                        <div class="style-name">Cristiano Ronaldo</div>
+                        <div class="style-desc">CR7 - Siêu sao bóng đá</div>
+                    </div>
+                    <div class="style-card" data-idol="messi" data-tier="vip">
+                        <span class="tier-badge tier-vip">VIP</span>
+                        <div class="style-icon">⚽</div>
+                        <div class="style-name">Lionel Messi</div>
+                        <div class="style-desc">Huyền thoại thế giới</div>
+                    </div>
+                    <div class="style-card" data-idol="rose" data-tier="free">
+                        <span class="tier-badge tier-free">Free</span>
+                        <div class="style-icon">🌹</div>
+                        <div class="style-name">Rosé (BP)</div>
+                        <div class="style-desc">Saint Laurent vibes</div>
+                    </div>
+                    <div class="style-card" data-idol="hanni" data-tier="free">
+                        <span class="tier-badge tier-free">Free</span>
+                        <div class="style-icon">🐰</div>
+                        <div class="style-name">Hanni (NewJeans)</div>
+                        <div class="style-desc">Hani của NewJeans</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 25px;">Hoặc tự tải ảnh người bạn muốn ghép <span class="tier-badge tier-vip" style="position: static; vertical-align: middle;">VIP</span></h3>
+                <label class="upload-zone" style="min-height: 180px;">
+                    <input type="file" id="uploadCustomIdol" accept="image/*" />
+                    <div class="upload-icon" id="upIconCustomIdol" style="font-size: 2rem;">👤</div>
+                    <div class="upload-text" id="upTextCustomIdol" style="font-size: 1rem;">Tải ảnh tùy chọn lên đây</div>
+                    <img id="previewImgCustomIdol" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 18px; position: absolute; z-index: 5;" />
+                </label>
+                
+                <h3 style="margin-top: 25px;">Bối cảnh (Scenario) 🎬</h3>
+                <div class="style-grid" id="scenarioGrid">
+                    <div class="style-card active" data-scenario="coffee" style="padding: 15px;">
+                        <div class="style-name" style="font-size: 1rem;">☕ Uống Cà Phê</div>
+                    </div>
+                    <div class="style-card" data-scenario="redcarpet" style="padding: 15px;">
+                        <div class="style-name" style="font-size: 1rem;">📸 Thảm Đỏ</div>
+                    </div>
+                    <div class="style-card" data-scenario="travel" style="padding: 15px;">
+                        <div class="style-name" style="font-size: 1rem;">✈️ Du Lịch</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <input type="text" id="customScenarioInput" placeholder="Hoặc tự mô tả bối cảnh ghép ảnh (VD: đang đi dạo dưới mưa, ngồi trong lớp học)..." style="width: 100%; padding: 15px; border-radius: 15px; border: 2px solid rgba(255, 139, 167, 0.3); background: rgba(255,255,255,0.5); color: var(--text-main); font-family: 'Outfit', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.border='2px solid var(--primary)'" onblur="this.style.border='2px solid rgba(255, 139, 167, 0.3)'" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Action Row Idol -->
+            <div class="action-row">
+                <button class="btn-generate" id="processBtnIdol">
+                    <span class="spinner" id="spinnerIdol" style="display: none;"></span>
+                    <span id="btnTextIdol">Chụp ảnh ngay 📸</span>
+                </button>
+            </div>
+
+            <!-- Results Idol -->
+            <div class="bento-box bento-result" id="resultBentoIdol" style="display: none; text-align: center;">
+                <h3>Bức ảnh thế kỷ 🌟</h3>
+                <div class="polaroid-frame" id="polaroidContainer">
+                     <img id="idolFinalImg" src="" style="max-width: 100%; display: block;" />
+                     <div class="polaroid-caption">Kỉ niệm đáng nhớ! ❤️</div>
+                </div>
+                <div style="margin-top: 25px;">
+                    <button class="btn-magic" id="downloadIdolBtn" style="width: auto; padding: 12px 30px; border-radius: 100px;">
+                        Tải ảnh về máy 📥
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <div class="bento-footer">
+            Design mock bởi <a href="#">Sticker Bento</a> &copy; 2024 - Demo Purpose Only
+        </div>
+
+    </div>
+
+    <!-- Hidden element for AI prompt -->
+    <textarea id="aiPrompt">Hãy tạo một bộ 8 sticker (sticker sheet) phong cách Anime từ người này:\n- 8 biểu cảm khác nhau: Vui vẻ, Mừng rỡ, Giận dữ, Buồn bã, Ngạc nhiên, Cười lớn, Khóc, Nháy mắt\n- Màu đậm, bóng tóc anime\n- Viền trắng lớn như sticker cắt sẵn bao quanh mỗi hình\n- Mắt to tròn, rõ nét\n- Nền trong suốt (PNG)</textarea>
+
+    <script>
+        // TABS LOGIC
+        const tabSticker = document.getElementById("tabSticker");
+        const tabIdol = document.getElementById("tabIdol");
+        const viewSticker = document.getElementById("viewSticker");
+        const viewIdol = document.getElementById("viewIdol");
+
+        tabSticker.addEventListener("click", () => {
+            if (tabSticker.classList.contains("active")) return;
+            tabSticker.classList.add("active");
+            tabIdol.classList.remove("active");
+            viewSticker.style.display = "contents";
+            viewIdol.style.display = "none";
+            
+            // Add transition effect
+            const uploadBox = viewSticker.querySelector(".bento-upload");
+            const styleBox = viewSticker.querySelector(".bento-style");
+            uploadBox.classList.remove("view-transition");
+            styleBox.classList.remove("view-transition");
+            void uploadBox.offsetWidth; // Trigger reflow
+            uploadBox.classList.add("view-transition");
+            styleBox.classList.add("view-transition");
+        });
+
+        tabIdol.addEventListener("click", () => {
+            if (tabIdol.classList.contains("active")) return;
+            tabIdol.classList.add("active");
+            tabSticker.classList.remove("active");
+            viewSticker.style.display = "none";
+            viewIdol.style.display = "contents";
+
+            // Add transition effect
+            const boxes = viewIdol.querySelectorAll(".bento-box");
+            boxes.forEach(box => {
+                box.classList.remove("view-transition");
+                void box.offsetWidth;
+                box.classList.add("view-transition");
+            });
+        });
+
+        const upload = document.getElementById("upload"); // Added missing declaration
+        const previewImg = document.getElementById("previewImg");
+        const upIcon = document.getElementById("upIcon");
+        const upText = document.getElementById("upText");
+        const upSub = document.getElementById("upSub");
+        const processBtn = document.getElementById("processBtn");
+        const spinner = document.getElementById("spinner");
+        const btnText = document.getElementById("btnText");
+        const resultBento = document.getElementById("resultBento");
+        const resultGrid = document.getElementById("resultGrid");
+        const styleCards = document.querySelectorAll("#viewSticker .style-card");
+        const aiPrompt = document.getElementById("aiPrompt");
+
+        // Idol Elements
+        const uploadIdol = document.getElementById("uploadIdol");
+        const previewImgIdol = document.getElementById("previewImgIdol");
+        const processBtnIdol = document.getElementById("processBtnIdol");
+        const idolCards = document.querySelectorAll("#idolGrid .style-card");
+        const uploadCustomIdol = document.getElementById("uploadCustomIdol");
+        const previewImgCustomIdol = document.getElementById("previewImgCustomIdol");
+        const scenarioCards = document.querySelectorAll("#scenarioGrid .style-card");
+        const customScenarioInput = document.getElementById("customScenarioInput");
+        const resultBentoIdol = document.getElementById("resultBentoIdol");
+        const idolFinalImg = document.getElementById("idolFinalImg");
+        const spinnerIdol = document.getElementById("spinnerIdol");
+        const btnTextIdol = document.getElementById("btnTextIdol");
+
+        // Payment & Login Elements
+        const creditAmount = document.getElementById("creditAmount");
+        const loginBtn = document.getElementById("loginBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const loginStateGuest = document.getElementById("loginStateGuest");
+        const loginStateUser = document.getElementById("loginStateUser");
+        const successSound = document.getElementById("successSound");
+
+        const emotionsString = "8 biểu cảm khác nhau: Vui vẻ, Mừng rỡ, Giận dữ, Buồn bã, Ngạc nhiên, Cười lớn, Khóc, Nháy mắt";
+        const transparencyReq = "- Nền TRONG SUỐT HOÀN TOÀN (PNG), xóa sạch background";
+        const prompts = {
+            anime: `Hãy tạo một bộ 8 sticker (sticker sheet) phong cách Anime từ người này:\n- ${emotionsString}\n- Màu đậm, bóng tóc anime\n- Viền trắng lớn như sticker cắt sẵn bao quanh mỗi hình\n- Mắt to tròn, rõ nét\n- ${transparencyReq}`,
+            chibi: `Hãy tạo một bộ 8 sticker kiểu Chibi đầu to dễ thương từ người này:\n- ${emotionsString}\n- Cơ thể nhỏ nhắn ngộ nghĩnh, má hồng\n- Viền trắng lớn như sticker cắt sẵn bao quanh mỗi hình\n- ${transparencyReq}`,
+            cyberpunk: `Hãy tạo một bộ 8 sticker phong cách Cyberpunk / Neon từ người này:\n- ${emotionsString}\n- Đèn neon sáng chói (hồng, xanh dương, tím), trang phục viễn tưởng\n- Viền trắng dày tách biệt nền\n- ${transparencyReq}`,
+            kawaii: `Hãy tạo một bộ 8 sticker Kawaii cực kỳ Cute từ người này:\n- ${emotionsString}\n- Màu pastel ngọt ngào, kẹo ngọt\n- Đường nét bo tròn, viền trắng dày đáng yêu bao quanh mỗi hình\n- ${transparencyReq}`,
+            monster: `Hãy tạo một bộ 8 sticker biến người này thành các Quái vật tí hon dễ thương (Cute Monster):\n- ${emotionsString}\n- Có sừng nhỏ, răng sún, hoặc đuôi xù nhưng cực kỳ đáng yêu\n- Viền trắng dày bao quanh mỗi hình\n- ${transparencyReq}`
+        };
+
+        // State variables
+        let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+        let credits = parseInt(localStorage.getItem("credits")) || 0;
+
+        // Restore UI state on load
+        window.addEventListener('DOMContentLoaded', () => {
+            if (isLoggedIn) {
+                loginStateGuest.style.display = "none";
+                loginStateUser.style.display = "flex";
+                updateCreditUI();
+            }
+        });
+
+        // Open Payment Page dynamically in new tab
+        let paymentWindow = null;
+
+        function openPaymentTab() {
+            if(paymentWindow && !paymentWindow.closed) {
+                paymentWindow.focus();
+                return;
+            }
+            paymentWindow = window.open("payment.html", "_blank");
+            localStorage.removeItem("didMockPayment");
+        }
+
+        window.addEventListener("message", (event) => {
+            if (event.data === "payment_success") {
+                credits += 1;
+                localStorage.setItem("credits", credits);
+                updateCreditUI();
+                try { successSound.play(); } catch(e) {}
+                
+                creditAmount.parentElement.style.background = "var(--success)";
+                setTimeout(() => {
+                    creditAmount.parentElement.style.background = "rgba(255, 255, 255, 0.2)";
+                }, 1000);
+            }
+        });
+
+        function updateCreditUI() {
+            creditAmount.innerText = credits;
+        }
+
+        // Handle Style Selection (Sticker)
+        styleCards.forEach(card => {
+            card.addEventListener("click", () => {
+                styleCards.forEach(c => c.classList.remove("active"));
+                card.classList.add("active");
+                const styleMode = card.getAttribute("data-style");
+                aiPrompt.value = prompts[styleMode];
+            });
+        });
+
+        // Handle File Upload (Sticker)
+        upload.onchange = function () {
+            const file = this.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                previewImg.src = url;
+                previewImg.style.opacity = "1";
+                
+                upIcon.style.opacity = "0";
+                upText.style.opacity = "0";
+                upSub.style.opacity = "0";
+
+                processBtn.classList.add("ready");
+                resultBento.style.display = "none";
+                resultGrid.innerHTML = "";
+            }
+        };
+
+        // Handle File Upload (Idol)
+        uploadIdol.onchange = function () {
+            const file = this.files[0];
+            if(file) {
+                const url = URL.createObjectURL(file);
+                previewImgIdol.src = url;
+                previewImgIdol.style.display = "block";
+                
+                document.getElementById("upIconIdol").style.opacity = 0;
+                document.getElementById("upTextIdol").style.opacity = 0;
+                document.getElementById("upSubIdol").style.opacity = 0;
+
+                processBtnIdol.classList.add("ready");
+                resultBentoIdol.style.display = "none";
+            }
+        }
+
+        // Handle Selection (Idol & Scenario)
+        idolCards.forEach(card => card.addEventListener("click", () => {
+            idolCards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+            
+            // Clear custom upload if predefined idol is selected
+            uploadCustomIdol.value = "";
+            previewImgCustomIdol.style.display = "none";
+            document.getElementById("upIconCustomIdol").style.opacity = 1;
+            document.getElementById("upTextCustomIdol").style.opacity = 1;
+        }));
+
+        // Handle Custom Idol Upload
+        uploadCustomIdol.onchange = function () {
+            const file = this.files[0];
+            if(file) {
+                // Clear predefined idol selection
+                idolCards.forEach(c => c.classList.remove("active"));
+
+                const url = URL.createObjectURL(file);
+                previewImgCustomIdol.src = url;
+                previewImgCustomIdol.style.display = "block";
+                
+                document.getElementById("upIconCustomIdol").style.opacity = 0;
+                document.getElementById("upTextCustomIdol").style.opacity = 0;
+            }
+        }
+
+        scenarioCards.forEach(card => card.addEventListener("click", () => {
+            scenarioCards.forEach(c => c.classList.remove("active"));
+            card.classList.add("active");
+            customScenarioInput.value = ""; // Clear input if predefined scenario selected
+        }));
+
+        customScenarioInput.addEventListener("input", () => {
+            if (customScenarioInput.value.trim() !== "") {
+                scenarioCards.forEach(c => c.classList.remove("active"));
+            }
+        });
+
+        // General Request Credit Function
+        function requireCredits(actionType) {
+            if (!isLoggedIn) {
+                alert("Vui lòng đăng nhập để sử dụng Phép Thuật 🪄!");
+                if(confirm("Chuyển hướng đến trình duyệt đăng nhập Google?")) {
+                    loginBtn.click();
+                }
+                return { allowed: false, useCredit: false }; 
+            }
+
+            if (credits >= 1) {
+                // Paid user logic
+                return { allowed: true, useCredit: true };
+            } else {
+                // Free user logic
+                if (actionType === 'sticker') {
+                    return { allowed: true, useCredit: false }; // Allow 3/8 stickers for free
+                } else if (actionType === 'idol') {
+                    const activeIdol = document.querySelector("#idolGrid .style-card.active");
+                    const isCustomIdol = uploadCustomIdol.files[0];
+                    
+                    if (isCustomIdol || (activeIdol && activeIdol.getAttribute("data-tier") === 'vip')) {
+                        if (confirm("✨ Tính năng này yêu cầu 1 Lượt phép thuật (VIP).\nChuyển hướng đến Trang Thanh Toán nhé?")) {
+                            openPaymentTab();
+                        }
+                        return { allowed: false, useCredit: false };
+                    }
+                    return { allowed: true, useCredit: false }; // Allowed for free idols
+                }
+            }
+            return { allowed: false, useCredit: false };
+        }
+
+        function deductCredit() {
+            if (credits > 0) {
+                credits -= 1;
+                localStorage.setItem("credits", credits);
+                updateCreditUI();
+            }
+        }
+
+        // Handle Generation (Sticker)
+        processBtn.onclick = function () {
+            if (!upload.files[0]) return;
+            
+            const access = requireCredits('sticker');
+            if (!access.allowed) return;
+
+            processBtn.style.pointerEvents = "none";
+            spinner.style.display = "inline-block";
+            btnText.innerHTML = '<span class="processing-text">✨ Đang múa cọ thần kỳ...</span>';
+
+            const phrases = ["Đang vẽ nét...", "Đang tô màu pastel...", "✂️ Đang tách nền vật thể...", "Đang phủ bóng mờ...", "Sắp xong rồi nhé!"];
+            let pIdx = 0;
+            const phraseInterval = setInterval(() => {
+                if (pIdx < phrases.length) {
+                    btnText.innerHTML = `<span class="processing-text">✨ ${phrases[pIdx++]}</span>`;
+                } else {
+                    clearInterval(phraseInterval);
+                }
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(phraseInterval);
+                processBtn.style.pointerEvents = "auto";
+                spinner.style.display = "none";
+                btnText.innerText = "Tạo Lại (Re-roll) 🎲";
+                resultBento.style.display = "flex";
+                resultGrid.innerHTML = ""; 
+
+                if (access.useCredit) deductCredit();
+
+                const emotionsList = ["Vui vẻ", "Mừng rỡ", "Giận dữ", "Buồn bã", "Ngạc nhiên", "Cười lớn", "Khóc", "Nháy mắt"];
+                
+                for(let i=0; i<8; i++) {
+                    const isLocked = !access.useCredit && i >= 3;
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = `result-item ${isLocked ? 'locked-item' : ''}`;
+                    
+                    const img = document.createElement("img");
+                    img.src = previewImg.src; 
+                    img.className = "sticker-img";
+                    img.title = emotionsList[i]; 
+                    
+                    if (isLocked) {
+                        const lockOverlay = document.createElement("div");
+                        lockOverlay.className = "lock-overlay";
+                        lockOverlay.innerHTML = "🔒";
+                        itemDiv.appendChild(lockOverlay);
+                    } else {
+                        const dlBtn = document.createElement("button");
+                        dlBtn.className = "download-btn";
+                        dlBtn.innerHTML = "⬇️";
+                        dlBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            const link = document.createElement('a');
+                            link.href = img.src;
+                            link.download = `sticker_${emotionsList[i]}.png`;
+                            link.click();
+                        };
+                        itemDiv.appendChild(dlBtn);
+                    }
+
+                    itemDiv.appendChild(img);
+                    resultGrid.appendChild(itemDiv);
+                }
+
+                if (!access.useCredit) {
+                    const upgradeBanner = document.createElement("div");
+                    upgradeBanner.className = "upgrade-banner";
+                    upgradeBanner.innerHTML = "🌟 Mua lượt (VIP) để nhận trọn bộ 8 sticker & gỡ giới hạn!";
+                    upgradeBanner.onclick = openPaymentTab;
+                    resultGrid.appendChild(upgradeBanner);
+                }
+
+                resultBento.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 2000);
+        };
+
+        // Handle Generation (Idol)
+        processBtnIdol.onclick = function() {
+            if(!uploadIdol.files[0]) return;
+
+            const access = requireCredits('idol');
+            if (!access.allowed) return;
+
+            processBtnIdol.style.pointerEvents = "none";
+            spinnerIdol.style.display = "inline-block";
+            btnTextIdol.innerText = " AI đang gọi Idol...";
+
+            setTimeout(() => {
+                processBtnIdol.style.pointerEvents = "auto";
+                spinnerIdol.style.display = "none";
+                btnTextIdol.innerText = "Chụp lại ảnh 📸";
+                
+                if (access.useCredit) deductCredit();
+
+                resultBentoIdol.style.display = "block";
+                idolFinalImg.src = previewImgIdol.src; // Hiển thị tạm ảnh cá nhân như placeholder
+                
+                document.getElementById("downloadIdolBtn").onclick = () => {
+                    const link = document.createElement('a');
+                    link.href = idolFinalImg.src;
+                    link.download = `idol_moment.png`;
+                    link.click();
+                };
+
+                resultBentoIdol.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 2500);
+        }
+
+        // Mock Login
+        loginBtn.onclick = function() {
+            if(confirm("Chuyển hướng đến trình duyệt đăng nhập Google?")) {
+                loginStateGuest.style.display = "none";
+                loginStateUser.style.display = "flex";
+                isLoggedIn = true; 
+                localStorage.setItem("isLoggedIn", "true");
+            }
+        };
+
+        logoutBtn.onclick = function() {
+            loginStateGuest.style.display = "block";
+            loginStateUser.style.display = "none";
+            isLoggedIn = false; 
+            localStorage.setItem("isLoggedIn", "false");
+            credits = 0; 
+            localStorage.setItem("credits", "0");
+            updateCreditUI();
+            
+            resultBento.style.display = "none";
+            resultGrid.innerHTML = "";
+            resultBentoIdol.style.display = "none";
+
+            if (upload.files[0]) {
+                processBtn.classList.add("ready");
+                btnText.innerText = "Bắt đầu hóa phép 🪄";
+            }
+        };
+
+    </script>
+</body>
+</html>
