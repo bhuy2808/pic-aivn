@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sticker Bento - Tạo Sticker Cực Chill</title>
+    <title>Sticker Chibi - Borderless & Magic</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
+    <!-- SVG Filter for Chibi Transparency -->
+    <svg width="0" height="0" style="position:absolute; pointer-events:none;">
+        <filter id="remove-white" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="1 0 0 0 0
+                                                 0 1 0 0 0
+                                                 0 0 1 0 0
+                                                 -5 -5 -5 0 14"/>
+        </filter>
+    </svg>
+
     <div class="ambient-glow"></div>
     <div class="ambient-glow-2"></div>
     
@@ -18,6 +28,21 @@
     <div class="sparkle s4"></div>
     <div class="sparkle s5"></div>
     <div class="sparkle s6"></div>
+
+    <!-- Background Chibis -->
+    <img src="assets/img/chibi-1.png" class="bg-chibi chibi-1" alt="Chibi 1">
+    <img src="assets/img/chibi-2.png" class="bg-chibi chibi-2" alt="Chibi 2">
+    <img src="assets/img/chibi-3.png" class="bg-chibi chibi-3" alt="Chibi 3">
+    <img src="assets/img/chibi-4.png" class="bg-chibi chibi-4" alt="Chibi 4">
+    <img src="assets/img/chibi-5.png" class="bg-chibi chibi-5" alt="Chibi 5">
+    <img src="assets/img/chibi-6.png" class="bg-chibi chibi-6" alt="Chibi 6">
+    <img src="assets/img/chibi-7.png" class="bg-chibi chibi-7" alt="Chibi 7">
+    <img src="assets/img/chibi-8.png" class="bg-chibi chibi-8" alt="Chibi 8">
+    <img src="assets/img/chibi-9.png" class="bg-chibi chibi-9" alt="Chibi 9">
+    <img src="assets/img/chibi-10.png" class="bg-chibi chibi-10" alt="Chibi 10">
+    <img src="assets/img/chibi-11.png" class="bg-chibi chibi-11" alt="Chibi 11">
+    <img src="assets/img/chibi-12.png" class="bg-chibi chibi-12" alt="Chibi 12">
+    <img src="assets/img/chibi-13.png" class="bg-chibi chibi-13" alt="Chibi 13">
 
     <div class="bento-container">
         
@@ -224,7 +249,7 @@
 
         <!-- Footer -->
         <div class="bento-footer">
-            Design mock bởi <a href="#">Sticker Bento</a> &copy; 2024 - Demo Purpose Only
+            Design mock bởi <a href="#">Bảo Huy</a> &copy; 2024 - Demo Purpose Only
         </div>
 
     </div>
@@ -310,11 +335,11 @@
         const emotionsString = "8 biểu cảm khác nhau: Vui vẻ, Mừng rỡ, Giận dữ, Buồn bã, Ngạc nhiên, Cười lớn, Khóc, Nháy mắt";
         const transparencyReq = "- Nền TRONG SUỐT HOÀN TOÀN (PNG), xóa sạch background";
         const prompts = {
-            anime: `Hãy tạo một bộ 8 sticker (sticker sheet) phong cách Anime từ người này:\n- ${emotionsString}\n- Màu đậm, bóng tóc anime\n- Viền trắng lớn như sticker cắt sẵn bao quanh mỗi hình\n- Mắt to tròn, rõ nét\n- ${transparencyReq}`,
-            chibi: `Hãy tạo một bộ 8 sticker kiểu Chibi đầu to dễ thương từ người này:\n- ${emotionsString}\n- Cơ thể nhỏ nhắn ngộ nghĩnh, má hồng\n- Viền trắng lớn như sticker cắt sẵn bao quanh mỗi hình\n- ${transparencyReq}`,
-            cyberpunk: `Hãy tạo một bộ 8 sticker phong cách Cyberpunk / Neon từ người này:\n- ${emotionsString}\n- Đèn neon sáng chói (hồng, xanh dương, tím), trang phục viễn tưởng\n- Viền trắng dày tách biệt nền\n- ${transparencyReq}`,
-            kawaii: `Hãy tạo một bộ 8 sticker Kawaii cực kỳ Cute từ người này:\n- ${emotionsString}\n- Màu pastel ngọt ngào, kẹo ngọt\n- Đường nét bo tròn, viền trắng dày đáng yêu bao quanh mỗi hình\n- ${transparencyReq}`,
-            monster: `Hãy tạo một bộ 8 sticker biến người này thành các Quái vật tí hon dễ thương (Cute Monster):\n- ${emotionsString}\n- Có sừng nhỏ, răng sún, hoặc đuôi xù nhưng cực kỳ đáng yêu\n- Viền trắng dày bao quanh mỗi hình\n- ${transparencyReq}`
+            anime: `Hãy tạo một bộ 8 sticker (sticker sheet) phong cách Anime từ người này:\n- ${emotionsString}\n- Màu đậm, bóng tóc anime\n- Mắt to tròn, rõ nét\n- ${transparencyReq}`,
+            chibi: `Hãy tạo một bộ 8 sticker kiểu Chibi đầu to dễ thương từ người này:\n- ${emotionsString}\n- Cơ thể nhỏ nhắn ngộ nghĩnh, má hồng\n- ${transparencyReq}`,
+            cyberpunk: `Hãy tạo một bộ 8 sticker phong cách Cyberpunk / Neon từ người này:\n- ${emotionsString}\n- Đèn neon sáng chói (hồng, xanh dương, tím), trang phục viễn tưởng\n- ${transparencyReq}`,
+            kawaii: `Hãy tạo một bộ 8 sticker Kawaii cực kỳ Cute từ người này:\n- ${emotionsString}\n- Màu pastel ngọt ngào, kẹo ngọt\n- Đường nét bo tròn\n- ${transparencyReq}`,
+            monster: `Hãy tạo một bộ 8 sticker biến người này thành các Quái vật tí hon dễ thương (Cute Monster):\n- ${emotionsString}\n- Có sừng nhỏ, răng sún, hoặc đuôi xù nhưng cực kỳ đáng yêu\n- ${transparencyReq}`
         };
 
         // State variables
