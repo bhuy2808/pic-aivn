@@ -99,7 +99,7 @@ body {
     pointer-events: none;
     opacity: 0.8; 
     width: 180px; /* Larger chibis */
-    filter: url(#remove-white) brightness(1.1); /* Removed contrast(1.2) to soften outlines */
+    filter: brightness(1.1); /* url moved to HTML for GitHub Pages compat */
     transition: all 0.5s ease;
 }
 
@@ -123,7 +123,7 @@ body {
     z-index: 10;
     pointer-events: none;
     opacity: 0.9;
-    filter: url(#remove-white) brightness(1.1); /* Softened outlines */
+    filter: brightness(1.1); /* url moved to HTML for GitHub Pages compat */
     animation: floatAnim 6s ease-in-out infinite alternate !important;
 }
 
@@ -301,7 +301,7 @@ body {
     object-fit: cover;
     border-radius: 18px;
     opacity: 0;
-    filter: url(#remove-white); /* Remove background from preview */
+    /* filter moved to HTML */
     transition: opacity 0.3s;
     z-index: 5;
 }
@@ -478,7 +478,7 @@ body {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    filter: url(#remove-white); /* Removed drop-shadow which looked like a black border */
+    /* filter moved to HTML */
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -527,7 +527,7 @@ textarea { display: none; }
 
 /* Sticker Effect */
 .sticker-img {
-    filter: url(#remove-white); /* Removed drop-shadow */
+    /* filter moved to HTML */
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
